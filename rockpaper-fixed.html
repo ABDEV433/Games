@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lib/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/fontawesome-free-6.4.2-web/css/all.min.css">
+    <style>
+        body {
+            /* font-family: 'Arial', sans-serif; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            /* margin: 0; */
+            background-image: url(./images/back\ \(2\).jpg);
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .player-choice,
+        .computer-choice {
+            width: 300px;
+            height: 300px;
+            /* background-color: #ddd; */
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        .result {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        .choices {
+            display: flex;
+        }
+
+        button {
+            font-size: 16px;
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="shadow-lg text-white bg-dark player-choice" id="playerChoice"></div>
+        <div class="text-white result" id="result"></div>
+        <div class="shadow-lg computer-choice text-white bg-dark" id="computerChoice"></div>
+        <div class="shadow-lg    choices">
+            <button class="btn btn-danger" onclick="play('rock')">Rock</button>
+            <button class="btn btn-success" onclick="play('paper')">Paper</button>
+            <button class="btn btn-warning" onclick="play('scissors')">Scissors</button>
+        </div>
+    </div>
+   <script>
+            function play(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            document.getElementById('playerChoice').innerText = `You chose ${playerChoice}`;
+            document.getElementById('computerChoice').innerText = `Computer chose ${computerChoice}`;
+
+            const result = determineWinner(playerChoice, computerChoice);
+            document.getElementById('result').innerText = result;
+        }
+
+        function determineWinner(player, computer) {
+            if (player === computer) {
+                return 'It\'s a draw!';
+            } else if ((player === 'rock' && computer === 'scissors') ||
+                (player === 'paper' && computer === 'rock') ||
+                (player === 'scissors' && computer === 'paper')) {
+                return 'You win!';
+            } else {
+                return 'Computer wins!';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
